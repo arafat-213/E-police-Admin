@@ -49,9 +49,9 @@ public class PolicemenListActivity extends AppCompatActivity {
             policeman.setName("Jack Ryan");
             policeman.setRank("Commissioner of police");
             policeman.setArea("Vadodara city");
-            policeman.setEmail("jack@amazon.in");
+            policeman.setEmail("tai.arafat.at@amazon.in");
             policeman.setMobile_no("9876543210");
-            policeman.setRating(3.7f);
+            policeman.setRating(4.20f);
             policemanArrayList.add(policeman);
         }
 

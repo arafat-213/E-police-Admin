@@ -23,10 +23,10 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
 
     private ArrayList<DashboardModule> dashboardModuleArrayList;
     private Context mContext;
+
     public DashboardModuleAdapter(ArrayList<DashboardModule> dashboardModuleArrayList) {
         this.dashboardModuleArrayList = dashboardModuleArrayList;
     }
-
 
     @NonNull
     @Override
@@ -107,6 +107,5 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
             name = itemView.findViewById(R.id.name);
             parentLayout = itemView.findViewById(R.id.parentLayout);
         }
-
     }
 }

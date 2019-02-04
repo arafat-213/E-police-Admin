@@ -28,7 +28,7 @@
 
             <TextView
                 android:id="@+id/policemanNameTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -42,23 +42,27 @@
 
             <TextView
                 android:id="@+id/policemanAreaTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="Vadodara city"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/locationIconIV"
                 app:layout_constraintTop_toBottomOf="@+id/policemanDesignationTV" />
 
             <TextView
                 android:id="@+id/policemanDesignationTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="Commisioner of police"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/policemanNameTV" />
 
@@ -74,7 +78,7 @@
 
             <TextView
                 android:id="@+id/policemanPhoneTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="8dp"
@@ -84,22 +88,26 @@
 
             <TextView
                 android:id="@+id/policemanEmailTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="tai.arafat.at@gmail.com"
+                android:layout_marginBottom="8dp"
+                android:text="tai.arafat.at.atat@gmail.com.cakbc"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/emailIconIV"
                 app:layout_constraintTop_toBottomOf="@+id/policemanAreaTV" />
 
             <ImageView
                 android:id="@+id/emailIconIV"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="2dp"
                 android:src="@drawable/round_email_black_18"
-                app:layout_constraintEnd_toStartOf="@+id/policemanEmailTV"
+                app:layout_constraintStart_toEndOf="@+id/policemanPhoneTV"
                 app:layout_constraintTop_toBottomOf="@+id/policemanAreaTV" />
 
             <TextView
@@ -108,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="2dp"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimary"
                 android:text="4.2 ★"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="14sp"
