@@ -33,7 +33,7 @@ public class NotificationActivity extends AppCompatActivity {
         notificationArrayList = new ArrayList<Notification>();
 
         for (int i=0; i<10; i++)
-            notificationArrayList.add(new Notification("Whaat aibsvj asd vs" , " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."));
+            notificationArrayList.add(new Notification("NOTIFICATION TYPE" , " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."));
 //        No policemanAdapter = new PolicemanAdapter(policemanArrayList);
 //        policeRecyclerView.setAdapter(policemanAdapter);
         NotificationAdapter notificationAdapter = new NotificationAdapter(notificationArrayList);
