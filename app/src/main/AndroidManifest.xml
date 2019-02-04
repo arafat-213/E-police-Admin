@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.DashboardActivity">
+        <activity android:name=".DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,13 +17,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.PolicemenListActivity"
-            android:label="Police Force" />
-        <activity android:name=".activities.AddPolicemanActivity" />
-        <activity android:name=".activities.NewNotificationActivity" />
-        <activity
-            android:name=".activities.NotificationActivity"
-            android:label="Notifications"></activity>
+            android:name=".PolicemenListActivity"
+            android:label="@string/title_activity_policemen_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AddPolicemanActivity" />
+        <activity android:name=".NewNotificationActivity" />
+        <activity android:name=".NotificationActivity"></activity>
     </application>
 
 </manifest>

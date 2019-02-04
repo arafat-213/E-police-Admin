@@ -14,7 +14,7 @@ import com.example.arafat_213.e_policephase2.R;
 
 import java.util.ArrayList;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>{
 
     private ArrayList<Notification> notificationArrayList;
     private Context context;
