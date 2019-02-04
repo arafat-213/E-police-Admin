@@ -1,5 +1,6 @@
 package com.example.arafat_213.e_policephase2.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -55,13 +56,13 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
                         break;
                     case 1:
 //                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(view.getContext(), ComplaintActivity.class);
+                        intent = new Intent(view.getContext(), NotificationActivity.class);
                         view.getContext().startActivity(intent);
                         break;
                     case 2:
-                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
-//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
-//                        view.getContext().startActivity(intent);
+                       // Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(view.getContext(), ComplaintActivity.class);
+                        view.getContext().startActivity(intent);
                         break;
                     case 3:
 //                        intent = new Intent(view.getContext(), RequestPatrollingActivity.class);
@@ -72,8 +73,8 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
                         break;
                     case 4:
                         //Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(view.getContext(), NotificationActivity.class);
-                        view.getContext().startActivity(intent);
+//                        intent = new Intent(view.getContext(), NotificationActivity.class);
+//                        view.getContext().startActivity(intent);
                         break;
                     case 5:
 //                        intent = new Intent(mContext, FeedbackActivity.class);
