@@ -13,9 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.arafat_213.e_policephase2.Models.DashboardModule;
-import com.example.arafat_213.e_policephase2.NotificationActivity;
-import com.example.arafat_213.e_policephase2.PolicemenListActivity;
 import com.example.arafat_213.e_policephase2.R;
+import com.example.arafat_213.e_policephase2.activities.NotificationActivity;
+import com.example.arafat_213.e_policephase2.activities.PolicemenListActivity;
 
 import java.util.ArrayList;
 

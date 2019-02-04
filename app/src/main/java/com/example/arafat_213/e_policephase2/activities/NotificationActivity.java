@@ -1,16 +1,17 @@
-package com.example.arafat_213.e_policephase2;
+package com.example.arafat_213.e_policephase2.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.arafat_213.e_policephase2.Adapters.NotificationAdapter;
 import com.example.arafat_213.e_policephase2.Models.Notification;
+import com.example.arafat_213.e_policephase2.R;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class NotificationActivity extends AppCompatActivity {
         NotificationAdapter notificationAdapter = new NotificationAdapter(notificationArrayList);
         mRecyclerView.setAdapter(notificationAdapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

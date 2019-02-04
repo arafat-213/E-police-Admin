@@ -1,14 +1,17 @@
-package com.example.arafat_213.e_policephase2;
+package com.example.arafat_213.e_policephase2.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-public class NewNotificationActivity extends AppCompatActivity {
+import com.example.arafat_213.e_policephase2.R;
+
+public class AddPolicemanActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_notification);
+        setContentView(R.layout.activity_add_policeman);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
