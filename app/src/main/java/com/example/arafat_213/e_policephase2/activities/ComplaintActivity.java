@@ -1,4 +1,4 @@
-package com.example.arafat_213.e_policephase2;
+package com.example.arafat_213.e_policephase2.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import com.example.arafat_213.e_policephase2.Adapters.ComplaintAdapter;
 import com.example.arafat_213.e_policephase2.Adapters.NotificationAdapter;
 import com.example.arafat_213.e_policephase2.Models.Complaint;
 import com.example.arafat_213.e_policephase2.Models.Notification;
+import com.example.arafat_213.e_policephase2.R;
 
 import java.util.ArrayList;
 

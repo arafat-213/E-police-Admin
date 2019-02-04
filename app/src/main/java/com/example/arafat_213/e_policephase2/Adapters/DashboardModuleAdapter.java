@@ -1,6 +1,5 @@
 package com.example.arafat_213.e_policephase2.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -13,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.arafat_213.e_policephase2.ComplaintActivity;
+import com.example.arafat_213.e_policephase2.activities.ComplaintActivity;
 import com.example.arafat_213.e_policephase2.Models.DashboardModule;
 import com.example.arafat_213.e_policephase2.R;
 import com.example.arafat_213.e_policephase2.activities.NotificationActivity;
