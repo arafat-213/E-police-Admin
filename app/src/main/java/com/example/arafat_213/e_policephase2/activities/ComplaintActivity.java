@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class ComplaintActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private ArrayList<Complaint> complaintArrayList;
     ComplaintsAdapter complaintsAdapter;
 
     @Override
@@ -32,7 +31,6 @@ public class ComplaintActivity extends AppCompatActivity {
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
 
         mRecyclerView = findViewById(R.id.complaintRV);
-        complaintArrayList = new ArrayList<Complaint>();
 
 //        for (int i=0; i<10; i++)
 //            complaintArrayList.add(new Complaint("TYPE: ANONYMOUS OR KNOWN IDENTITY" , " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."));
@@ -40,7 +38,6 @@ public class ComplaintActivity extends AppCompatActivity {
 //        policeRecyclerView.setAdapter(policemanAdapter);
 //        ComplaintAdapter complaintAdapter = new ComplaintAdapter(complaintArrayList);
 //        mRecyclerView.setAdapter(complaintAdapter);
-
         FirebaseApp.initializeApp(this);
 
         Query complainstRef = FirebaseDatabase.getInstance()
@@ -52,10 +49,12 @@ public class ComplaintActivity extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Complaint>()
                         .setQuery(complainstRef, Complaint.class)
                         .build();
+
         complaintsAdapter = new ComplaintsAdapter(options);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(complaintsAdapter);
+
     }
 
     @Override
