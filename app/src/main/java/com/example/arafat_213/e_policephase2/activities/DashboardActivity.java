@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import com.example.arafat_213.e_policephase2.Adapters.DashboardModuleAdapter;
 import com.example.arafat_213.e_policephase2.Models.DashboardModule;
 import com.example.arafat_213.e_policephase2.R;
+import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 
@@ -39,5 +40,10 @@ public class DashboardActivity extends AppCompatActivity {
         DashboardModuleAdapter dashboardModuleAdapter = new DashboardModuleAdapter(arrayList);
         recyclerView.setAdapter(dashboardModuleAdapter);
 
+        temp();
+    }
+
+    public void temp() {
+        //
     }
 }

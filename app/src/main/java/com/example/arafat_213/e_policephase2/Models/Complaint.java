@@ -1,56 +1,71 @@
 package com.example.arafat_213.e_policephase2.Models;
 
+import java.util.Arrays;
+
 public class Complaint {
-
-    private String complaintType;
-    private String complaintContent;
-    private String complaintImage;
-
+    private String[] media;
+    private String area, address, description;
+    private boolean isAnonymous;
 
     public Complaint() {
     }
 
-    public Complaint(String complaintType, String complaintContent, String complaintImage) {
-        this.complaintType = complaintType;
-        this.complaintContent = complaintContent;
-        this.complaintImage = complaintImage;
+    public Complaint(String[] media, String area, String address, String description, boolean isAnonymous) {
+        this.media = media;
+        this.area = area;
+        this.address = address;
+        this.description = description;
+        this.isAnonymous = isAnonymous;
     }
 
-    public Complaint(String complaintType, String complaintContent) {
-        this.complaintType = complaintType;
-        this.complaintContent = complaintContent;
+    public String[] getMedia() {
+        return media;
     }
 
-    public String getComplaintType() {
-        return complaintType;
+    public void setMedia(String[] media) {
+        this.media = media;
     }
 
-    public String getComplaintContent() {
-        return complaintContent;
+    public String getArea() {
+        return area;
     }
 
-    public String getComplaintImage() {
-        return complaintImage;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public void setComplaintType(String complaintType) {
-        this.complaintType = complaintType;
+    public String getAddress() {
+        return address;
     }
 
-    public void setComplaintContent(String complaintContent) {
-        this.complaintContent = complaintContent;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setComplaintImage(String complaintImage) {
-        this.complaintImage = complaintImage;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isAnonymous() {
+        return isAnonymous;
+    }
+
+    public void setAnonymous(boolean anonymous) {
+        isAnonymous = anonymous;
     }
 
     @Override
     public String toString() {
         return "Complaint{" +
-                "complaintType='" + complaintType + '\'' +
-                ", complaintContent='" + complaintContent + '\'' +
-                ", complaintImage='" + complaintImage + '\'' +
+                "media=" + Arrays.toString(media) +
+                ", area='" + area + '\'' +
+                ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                ", isAnonymous=" + isAnonymous +
                 '}';
     }
 }
