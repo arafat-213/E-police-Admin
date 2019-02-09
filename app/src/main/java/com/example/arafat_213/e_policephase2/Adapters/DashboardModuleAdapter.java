@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.arafat_213.e_policephase2.activities.ComplaintActivity;
 import com.example.arafat_213.e_policephase2.Models.DashboardModule;
 import com.example.arafat_213.e_policephase2.R;
+import com.example.arafat_213.e_policephase2.activities.FeedbackActivity;
 import com.example.arafat_213.e_policephase2.activities.NotificationActivity;
 import com.example.arafat_213.e_policephase2.activities.PolicemenListActivity;
 
@@ -73,8 +74,8 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
                         break;
                     case 4:
                         //Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
-//                        intent = new Intent(view.getContext(), NotificationActivity.class);
-//                        view.getContext().startActivity(intent);
+                        intent = new Intent(view.getContext(), FeedbackActivity.class);
+                        view.getContext().startActivity(intent);
                         break;
                     case 5:
 //                        intent = new Intent(mContext, FeedbackActivity.class);
