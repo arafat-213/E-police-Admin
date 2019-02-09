@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/phoneET"
+        android:id="@+id/policemanphoneET"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -34,16 +34,16 @@
         app:layout_constraintTop_toBottomOf="@+id/stationSpinner" />
 
     <EditText
-        android:id="@+id/mailET"
+        android:id="@+id/policemanMailET"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/hint_enter_mail"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/phoneET"
-        app:layout_constraintStart_toStartOf="@+id/phoneET"
-        app:layout_constraintTop_toBottomOf="@+id/phoneET" />
+        app:layout_constraintEnd_toEndOf="@+id/policemanphoneET"
+        app:layout_constraintStart_toStartOf="@+id/policemanphoneET"
+        app:layout_constraintTop_toBottomOf="@+id/policemanphoneET" />
 
     <Spinner
         android:id="@+id/designationSpinner"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/designationSpinner" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/addPolicemanBTN"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
