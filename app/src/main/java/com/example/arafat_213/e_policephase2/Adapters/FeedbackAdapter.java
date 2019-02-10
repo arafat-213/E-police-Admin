@@ -36,7 +36,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     public void onBindViewHolder(@NonNull FeedbackViewHolder feedbackViewHolder, int i) {
         feedbackViewHolder.policeStation.setText(feedbackArrayList.get(i).getPoliceStation());
         feedbackViewHolder.policeOfficer.setText(feedbackArrayList.get(i).getPoliceOfficer());
-        feedbackViewHolder.rating.setText(""+feedbackArrayList.get(i).getRating());
+        feedbackViewHolder.rating.setText(" "+feedbackArrayList.get(i).getRating()+" ★");
         feedbackViewHolder.description.setText(feedbackArrayList.get(i).getDescription());
     }
 
