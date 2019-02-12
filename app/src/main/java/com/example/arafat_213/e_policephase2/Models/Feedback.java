@@ -71,10 +71,10 @@ public class Feedback {
     @Override
     public String toString() {
         return "Feedback{" +
-                "policeStation='" + policeStation + '\'' +
-                ", policeOfficer='" + policeOfficer + '\'' +
-                ", rating=" + rating +
-                ", description='" + description + '\'' +
+                "policeStationTV='" + policeStation + '\'' +
+                ", policeOfficerNameTV='" + policeOfficer + '\'' +
+                ", policeRatingTV=" + rating +
+                ", descriptionTV='" + description + '\'' +
                 ", userName='" + userName + '\'' +
                 '}';
     }
