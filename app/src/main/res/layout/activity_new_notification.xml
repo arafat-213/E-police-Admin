@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".activities.NewNotificationActivity">
 
+    <ProgressBar
+        android:id="@+id/newNotificationPB"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:max="100"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Spinner
         android:id="@+id/notifyTypeSpinner"
         android:layout_width="0dp"
