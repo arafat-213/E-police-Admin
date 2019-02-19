@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "1074601821429-e22g83iajcun6q5rqg3aic487hpftc8q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.arafat_213.e_policephase2",
+            "certificate_hash": "89ad8e0343186d2aad18ce511828b013f4712c4d"
+          }
+        },
+        {
           "client_id": "1074601821429-ebp1vn301ngj6iv20n9rfgic47u4kgij.apps.googleusercontent.com",
           "client_type": 3
         }
