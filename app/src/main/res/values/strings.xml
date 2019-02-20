@@ -5,4 +5,7 @@
     <string name="hint_enter_contact">Enter Contact Number</string>
     <string name="hint_enter_mail">Enter Email ID</string>
     <string name="hint_notification">Enter content to notify</string>
+    <string name="hint_enter_username">Enter user name</string>
+    <string name="hint_enter_password">Enter password</string>
+    <string name="sign_in">SIgn in</string>
 </resources>
