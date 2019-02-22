@@ -45,7 +45,7 @@ public class PolicemenListActivity extends AppCompatActivity {
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
         for (int i = 0; i < 20; i++) {
             policeman = new Policeman();
-            policeman.setImage_id(R.drawable.jack);
+            //policeman.setImage_id(R.drawable.jack);
             policeman.setName("Jack Ryan");
             policeman.setRank("Commissioner of police");
             policeman.setArea("Vadodara city");
