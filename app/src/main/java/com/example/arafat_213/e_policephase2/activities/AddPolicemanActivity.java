@@ -4,18 +4,23 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.arafat_213.e_policephase2.Models.Policeman;
 import com.example.arafat_213.e_policephase2.R;
+import com.example.arafat_213.e_policephase2.utilities.SpinnerData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 
 
 public class AddPolicemanActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,7 +30,11 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
     EditText policemanMailET;
     ProgressBar mProgressBar;
     Button addPolicemanBTN;
+    Spinner designationSpinner;
+    Spinner stationSpinner;
     DatabaseReference mPolicemenRef;
+    ArrayList<String> designationList, stationList;
+    SpinnerData spinnerData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +42,18 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_policeman);
         init();
+        setupSpinners();
+        stationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     public void init() {
@@ -64,7 +84,8 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
                         policemanNameET.getText().toString(),
                         policemanPhoneET.getText().toString(),
                         policemanMailET.getText().toString(),
-                        "ACP", "AREA"
+                        designationSpinner.getSelectedItem().toString()
+                        , stationSpinner.getSelectedItem().toString()
                 );
                 addPoliceman(policeman);
                 break;
@@ -92,4 +113,18 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
                 });
     }
 
+    public void setupSpinners() {
+        stationSpinner = findViewById(R.id.stationSpinner);
+        designationSpinner = findViewById(R.id.designationSpinner);
+        spinnerData = new SpinnerData();
+
+        stationList = spinnerData.getStationList();
+        ArrayAdapter stationsAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, stationList);
+        stationSpinner.setAdapter(stationsAdapter);
+
+        designationList = spinnerData.getDesignationList();
+        ArrayAdapter designationAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, designationList);
+        designationSpinner.setAdapter(designationAdapter);
+
+    }
 }
