@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,13 +13,10 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.arafat_213.e_policephase2.Models.Notification;
 import com.example.arafat_213.e_policephase2.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -44,31 +40,25 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
     DatabaseReference mNotificationRef;
     EditText notifyContentET;
     Button notifyBTN;
-    ProgressBar mProgressBar;
     ImageView notificationIV;
 
-    private Uri mImageUri, uri;
+    private Uri mImageUri;
     StorageTask mUploadTask;
-    UploadTask myUploadTask;
+    //UploadTask myUploadTask;
     StorageReference fileRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_notification);
-        init();
-    }
 
-    public void init() {
         notifyContentET = findViewById(R.id.notifyContentET);
         notifyBTN = findViewById(R.id.notifyBTN);
         notifyBTN.setOnClickListener(this);
-        mProgressBar = findViewById(R.id.newNotificationPB);
         notificationIV=findViewById(R.id.notificationIV);
         notificationIV.setOnClickListener(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
-        mNotificationRef = FirebaseDatabase.getInstance().getReference().child("notifications");
 
         mStorageRef= FirebaseStorage.getInstance().getReference().child("notifications/");
         mNotificationRef = FirebaseDatabase.getInstance().getReference().child("notifications/");
@@ -92,32 +82,6 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
                 openFileChooser();
                 break;
             case R.id.notifyBTN:
-                mProgressBar.setVisibility(View.VISIBLE);
-                Notification notification = new Notification("Emergency", notifyContentET.getText().toString(), " ");
-                sendNotification(notification);
-                break;
-        }
-    }
-
-    public void sendNotification(Notification notification) {
-        String key = mNotificationRef.push().getKey();
-        mNotificationRef.child(key).setValue(notification)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext()
-                                    , "Notification sent"
-                                    , Toast.LENGTH_SHORT).show();
-                            finish();
-                        } else {
-                            Toast.makeText(getApplicationContext()
-                                    , "Failed to send notification"
-                                    , Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
                 uploadImage();
                 break;
 
@@ -141,14 +105,7 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
             notificationIV.setImageURI(mImageUri);
         }
     }
-
-    private String getFileExtension(Uri uri){
-        ContentResolver cr = getContentResolver();
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        return mime.getExtensionFromMimeType(cr.getType(uri));
-
-    }
-
+    
     public void uploadImage(){
         if(mImageUri!= null){
             final StorageReference fileRef = mStorageRef.child(System.currentTimeMillis()
