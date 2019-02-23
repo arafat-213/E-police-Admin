@@ -8,15 +8,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.arafat_213.e_policephase2.Models.Notification;
 import com.example.arafat_213.e_policephase2.Models.Policeman;
 import com.example.arafat_213.e_policephase2.R;
+import com.example.arafat_213.e_policephase2.utilities.SpinnerData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -27,6 +30,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+
 
 public class AddPolicemanActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,8 +41,11 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
     EditText policemanPhoneET;
     EditText policemanMailET;
     ProgressBar mProgressBar;
+    Spinner rankspinner,areaspinner;
     Button addPolicemanBTN;
     ImageView addPolicemanIV;
+    private ArrayList<String> policeStationsArrayList;
+    private ArrayList<String> designationArrayList;
     DatabaseReference mPolicemenRef;
     StorageReference mStorageRef, fileRef;
     private Uri mImageUri;
@@ -49,6 +57,7 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_policeman);
         init();
+        setupSpinner();
 
     }
 
@@ -129,7 +138,7 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
                         policemanNameET.getText().toString(),
                         policemanPhoneET.getText().toString(),
                         policemanMailET.getText().toString(),
-                        "ACP", "AREA"
+                        rankspinner.getSelectedItem().toString(), areaspinner.getSelectedItem().toString()
                 );
                                     String key = mPolicemenRef.push().getKey();
                                     mPolicemenRef.child(key).setValue(policemanobj)
@@ -160,7 +169,7 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
                             policemanNameET.getText().toString(),
                             policemanPhoneET.getText().toString(),
                             policemanMailET.getText().toString(),
-                            "ACP", "AREA"
+                            rankspinner.getSelectedItem().toString(),areaspinner.getSelectedItem().toString()
                     )
             ).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -175,5 +184,20 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
 
     }
 
+    public void setupSpinner(){
+
+        rankspinner=findViewById(R.id.designationSpinner);
+        areaspinner=findViewById(R.id.stationSpinner);
+        SpinnerData spinnerData = new SpinnerData();
+        policeStationsArrayList = spinnerData.getStationList();
+        designationArrayList = spinnerData.getDesignationList();
+        ArrayAdapter policeStationsAdapter = new ArrayAdapter(this,
+                R.layout.support_simple_spinner_dropdown_item,policeStationsArrayList);
+        ArrayAdapter designationAdapter = new ArrayAdapter(this,
+                R.layout.support_simple_spinner_dropdown_item,designationArrayList);
+        rankspinner.setAdapter(designationAdapter);
+        areaspinner.setAdapter(policeStationsAdapter);
+
+    }
 
 }

@@ -3,7 +3,7 @@ package com.example.arafat_213.e_policephase2.utilities;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SpinnerData {
+public class  SpinnerData {
     ArrayList<String> stationList;
     ArrayList<String> notificationTypesList;
     ArrayList<String> designationList;
