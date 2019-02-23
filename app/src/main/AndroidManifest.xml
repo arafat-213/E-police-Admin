@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.arafat_213.e_policephase2">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -10,22 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SignInActivity">
+        <activity android:name=".activities.FeedbackActivity"></activity>
+        <activity android:name=".activities.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RequestPatrollingActivity" />
-        <activity android:name=".activities.DashboardActivity" />
         <activity
             android:name=".activities.PolicemenListActivity"
             android:label="@string/title_activity_policemen_list" />
         <activity android:name=".activities.AddPolicemanActivity" />
         <activity android:name=".activities.NewNotificationActivity" />
         <activity android:name=".activities.NotificationActivity" />
-        <activity android:name=".activities.ComplaintActivity" />
+        <activity android:name=".activities.ComplaintActivity"></activity>
     </application>
 
 </manifest>

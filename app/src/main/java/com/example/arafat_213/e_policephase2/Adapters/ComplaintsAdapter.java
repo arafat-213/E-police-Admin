@@ -13,9 +13,6 @@ import com.example.arafat_213.e_policephase2.Models.Complaint;
 import com.example.arafat_213.e_policephase2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, ComplaintsAdapter.ComplaintsViewHolder> {
 
@@ -61,8 +58,8 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
         public ComplaintsViewHolder(@NonNull View itemView) {
             super(itemView);
             complaintImage = itemView.findViewById(R.id.complaintIV);
-            complaintType = itemView.findViewById(R.id.complaintTypeTV);
-            complaintContent = itemView.findViewById(R.id.complaintContentTV);
+            complaintType = itemView.findViewById(R.id.feedbackNameTV);
+            complaintContent = itemView.findViewById(R.id.feedbackContentTV);
         }
     }
 }
