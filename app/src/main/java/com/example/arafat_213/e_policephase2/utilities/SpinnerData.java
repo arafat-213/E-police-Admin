@@ -11,6 +11,7 @@ public class  SpinnerData {
     public SpinnerData() {
         stationList = new ArrayList<>();
         designationList = new ArrayList<>();
+        notificationTypesList= new ArrayList<>();
     }
 
     public ArrayList<String> getStationList() {
@@ -37,7 +38,7 @@ public class  SpinnerData {
     }
 
     public ArrayList<String> getNotificationTypesList() {
-        notificationTypesList.add("Emergeny");
+        notificationTypesList.add("Emergency");
         notificationTypesList.add("Informative");
         notificationTypesList.add("Alert");
         notificationTypesList.add("Greetings");

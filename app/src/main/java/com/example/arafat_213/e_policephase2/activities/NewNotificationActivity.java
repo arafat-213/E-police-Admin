@@ -10,13 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.arafat_213.e_policephase2.Models.Notification;
 import com.example.arafat_213.e_policephase2.R;
+import com.example.arafat_213.e_policephase2.utilities.SpinnerData;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,6 +35,7 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.security.PrivateKey;
+import java.util.ArrayList;
 
 public class NewNotificationActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,8 +44,11 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
     StorageReference mStorageRef;
     DatabaseReference mNotificationRef;
     EditText notifyContentET;
+    ProgressBar mProgressBar;
     Button notifyBTN;
     ImageView notificationIV;
+    Spinner typeSpinner;
+    private ArrayList<String> typeArrayList;
 
     private Uri mImageUri;
     StorageTask mUploadTask;
@@ -53,6 +61,7 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_new_notification);
 
         notifyContentET = findViewById(R.id.notifyContentET);
+        mProgressBar = findViewById(R.id.newNotificationPB);
         notifyBTN = findViewById(R.id.notifyBTN);
         notifyBTN.setOnClickListener(this);
         notificationIV=findViewById(R.id.notificationIV);
@@ -63,6 +72,8 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
         mStorageRef= FirebaseStorage.getInstance().getReference().child("notifications/");
         mNotificationRef = FirebaseDatabase.getInstance().getReference().child("notifications/");
         fileRef = mStorageRef.child(System.currentTimeMillis()+"");
+
+        setupSpinners();
 
 
     }
@@ -83,6 +94,7 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
                 break;
             case R.id.notifyBTN:
                 uploadImage();
+                mProgressBar.setVisibility(View.VISIBLE);
                 break;
 
         }
@@ -119,13 +131,14 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
                             result.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    Notification notificationobj = new Notification("Emergency",notifyContentET.getText().toString(),
+                                    Notification notificationobj = new Notification(typeSpinner.getSelectedItem().toString(),notifyContentET.getText().toString(),
                                             uri.toString());
                                     String key = mNotificationRef.push().getKey();
                                     mNotificationRef.child(key).setValue(notificationobj)
                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
+                                                    mProgressBar.setVisibility(View.INVISIBLE);
                                                     Toast.makeText(NewNotificationActivity.this,"Complaint Uploaded Successfully",
                                                             Toast.LENGTH_LONG).show();
                                                     notifyContentET.setText("");
@@ -143,7 +156,7 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
         else{
             String key = mNotificationRef.push().getKey();
             mNotificationRef.child(key).setValue(
-                    new Notification("Emergency", notifyContentET.getText().toString(),"NO IMAGE SELECTED")
+                    new Notification(typeSpinner.getSelectedItem().toString(), notifyContentET.getText().toString(),"NO IMAGE SELECTED")
             ).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -152,6 +165,15 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
             });
         }
 
+    }
+
+    public void setupSpinners()
+    {
+        typeSpinner = findViewById(R.id.notifyTypeSpinner);
+        SpinnerData spinnerData = new SpinnerData();
+        typeArrayList = spinnerData.getNotificationTypesList();
+        ArrayAdapter typeAdapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,typeArrayList);
+        typeSpinner.setAdapter(typeAdapter);
     }
 
 
