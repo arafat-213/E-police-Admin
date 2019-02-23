@@ -1,6 +1,5 @@
 package com.example.arafat_213.e_policephase2.Adapters;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,8 +13,6 @@ import com.example.arafat_213.e_policephase2.Models.Policeman;
 import com.example.arafat_213.e_policephase2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-
-import java.util.ArrayList;
 
 public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, PolicemanAdapter.PolicemanViewHolder> {
 
@@ -42,7 +39,7 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
 
     @Override
     protected void onBindViewHolder(@NonNull PolicemanViewHolder policemanViewHolder, int position, @NonNull Policeman model) {
-        policemanViewHolder.policemanImage.setImageResource(model.getImage_id());
+        // policemanViewHolder.policemanImage.setImageResource(model.getImage_id());
         policemanViewHolder.policemanName.setText(model.getName());
         policemanViewHolder.policemanRank.setText(model.getRank());
         policemanViewHolder.policemanArea.setText(model.getArea());
@@ -62,14 +59,6 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
         public TextView policemanRatingTV;
         public PolicemanViewHolder(@NonNull View itemView) {
             super(itemView);
-            /*policemanImage = itemView.findViewById(R.id.policeman_image);
-            policemanName = itemView.findViewById(R.id.policeman_name);
-            policemanRank = itemView.findViewById(R.id.policeman_rank);
-            policemanArea = itemView.findViewById(R.id.policeman_area);
-            policemanPhone = itemView.findViewById(R.id.policeman_phone);
-            policemanEmail = itemView.findViewById(R.id.policeman_email);
-            policemanRating = itemView.findViewById(R.id.policeman_rating);*/
-
             policemanImage = itemView.findViewById(R.id.policemanIV);
             policemanName = itemView.findViewById(R.id.policemanNameTV);
             policemanRank = itemView.findViewById(R.id.policemanDesignationTV);
