@@ -34,7 +34,7 @@ public class PolicemanAdapter extends RecyclerView.Adapter<PolicemanAdapter.Poli
 
     @Override
     public void onBindViewHolder(@NonNull PolicemanViewHolder policemanViewHolder, int i) {
-        policemanViewHolder.policemanImage.setImageResource(policemanArrayList.get(i).getImage_id());
+       // policemanViewHolder.policemanImage.setImageResource(policemanArrayList.get(i).getImage_id());
         policemanViewHolder.policemanName.setText(policemanArrayList.get(i).getName());
         policemanViewHolder.policemanRank.setText(policemanArrayList.get(i).getRank());
         policemanViewHolder.policemanArea.setText(policemanArrayList.get(i).getArea());
