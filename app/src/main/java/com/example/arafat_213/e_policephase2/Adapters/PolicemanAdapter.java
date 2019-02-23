@@ -1,5 +1,6 @@
 package com.example.arafat_213.e_policephase2.Adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.arafat_213.e_policephase2.Models.Policeman;
 import com.example.arafat_213.e_policephase2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -16,15 +18,18 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, PolicemanAdapter.PolicemanViewHolder> {
 
-
+    private Context context;
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      * @param options
      */
-    public PolicemanAdapter(@NonNull FirebaseRecyclerOptions<Policeman> options) {
+    
+
+    public PolicemanAdapter(@NonNull FirebaseRecyclerOptions<Policeman> options, Context context) {
         super(options);
+        this.context = context;
     }
 
     @NonNull
@@ -39,7 +44,7 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
 
     @Override
     protected void onBindViewHolder(@NonNull PolicemanViewHolder policemanViewHolder, int position, @NonNull Policeman model) {
-        // policemanViewHolder.policemanImage.setImageResource(model.getImage_id());
+        Glide.with(context).load(model.getImage_id()).circleCrop().into(policemanViewHolder.policemanImage);
         policemanViewHolder.policemanName.setText(model.getName());
         policemanViewHolder.policemanRank.setText(model.getRank());
         policemanViewHolder.policemanArea.setText(model.getArea());
