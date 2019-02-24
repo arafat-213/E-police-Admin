@@ -51,9 +51,9 @@ public class FeedbackAdapter extends FirebaseRecyclerAdapter<Feedback, FeedbackA
         public FeedbackViewHolder(@NonNull View itemView) {
             super(itemView);
             policeStationTV = itemView.findViewById(R.id.feedbackStationTV);
-            policeOfficerNameTV = itemView.findViewById(R.id.feedbackNameTV);
+            policeOfficerNameTV = itemView.findViewById(R.id.complaintNameTV);
             policeRatingTV = itemView.findViewById(R.id.feedbackRatingTV);
-            descriptionTV = itemView.findViewById(R.id.feedbackContentTV);
+            descriptionTV = itemView.findViewById(R.id.complaintContentET);
         }
     }
 }

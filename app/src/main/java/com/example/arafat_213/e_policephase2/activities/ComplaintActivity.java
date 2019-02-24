@@ -58,7 +58,7 @@ public class ComplaintActivity extends AppCompatActivity {
                         .setQuery(complainstRef, Complaint.class)
                         .build();
 
-        complaintsAdapter = new ComplaintsAdapter(options) {
+        complaintsAdapter = new ComplaintsAdapter(options,getApplicationContext()) {
             @Override
             public void onDataChanged() {
                 super.onDataChanged();

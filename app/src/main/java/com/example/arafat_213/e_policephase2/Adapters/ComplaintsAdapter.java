@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.arafat_213.e_policephase2.Models.Complaint;
 import com.example.arafat_213.e_policephase2.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -26,10 +27,12 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
      *
      * @param options
      */
-    public ComplaintsAdapter(@NonNull FirebaseRecyclerOptions<Complaint> options) {
-        super(options);
-    }
 
+
+    public ComplaintsAdapter(@NonNull FirebaseRecyclerOptions<Complaint> options, Context context) {
+        super(options);
+        this.mContext = context;
+    }
     /*public ComplaintsAdapter(Class<Complaint> modelClass, int modelLayout, Class<ComplaintsHolder> viewHolderClass, DatabaseReference ref, Context context) {
         super(modelClass, modelLayout, viewHolderClass, ref);
         this.mContext = context;
@@ -38,8 +41,9 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
 
     @Override
     protected void onBindViewHolder(@NonNull ComplaintsViewHolder  complaintsViewHolder, int position, @NonNull Complaint model) {
-        complaintsViewHolder.complaintType.setText(""+model.isAnonymous());
+        complaintsViewHolder.complaintName.setText(""+model.getUsername());
         complaintsViewHolder.complaintContent.setText(model.getDescription());
+        Glide.with(mContext).load(model.getMedia()).circleCrop().into(complaintsViewHolder.complaintImage);
     }
 
     @NonNull
@@ -53,13 +57,13 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
     class ComplaintsViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView complaintImage;
-        public TextView complaintType, complaintContent;
+        public TextView complaintName, complaintContent;
 
         public ComplaintsViewHolder(@NonNull View itemView) {
             super(itemView);
             complaintImage = itemView.findViewById(R.id.complaintIV);
-            complaintType = itemView.findViewById(R.id.feedbackNameTV);
-            complaintContent = itemView.findViewById(R.id.feedbackContentTV);
+            complaintName = itemView.findViewById(R.id.complaintNameTV);
+            complaintContent = itemView.findViewById(R.id.complaintContentET);
         }
     }
 }
