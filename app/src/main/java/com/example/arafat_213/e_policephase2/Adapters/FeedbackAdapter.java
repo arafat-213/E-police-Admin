@@ -16,6 +16,7 @@ public class FeedbackAdapter extends FirebaseRecyclerAdapter<Feedback, FeedbackA
 
 
     private static final String TAG = "FeedbackAdapter";
+
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
@@ -39,11 +40,11 @@ public class FeedbackAdapter extends FirebaseRecyclerAdapter<Feedback, FeedbackA
     public void onBindViewHolder(@NonNull FeedbackViewHolder feedbackViewHolder, int position, @NonNull Feedback model) {
 //        feedbackViewHolder.policeStationTV.setText(model.getPoliceStation());
         feedbackViewHolder.policeOfficerNameTV.setText(model.getPoliceOfficer());
-        feedbackViewHolder.policeRatingTV.setText(" " +model.getRating()+" ★");
+        feedbackViewHolder.policeRatingTV.setText(" " + model.getRating() + " ★");
         feedbackViewHolder.descriptionTV.setText(model.getDescription());
     }
 
-    public class FeedbackViewHolder extends  RecyclerView.ViewHolder{
+    public class FeedbackViewHolder extends RecyclerView.ViewHolder {
 
         public TextView policeStationTV, policeOfficerNameTV, policeRatingTV, descriptionTV;
 

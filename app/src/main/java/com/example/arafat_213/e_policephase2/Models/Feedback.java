@@ -6,8 +6,7 @@ public class Feedback {
     private String rating;
     private String description;
     private String userName;
-    private  String policemanID;
-
+    private String policemanID;
 
 
     public Feedback(String policeStation, String policeOfficer, String rating, String description, String userName, String policemanID) {
@@ -19,7 +18,8 @@ public class Feedback {
         this.policemanID = policemanID;
     }
 
-    public Feedback() { }
+    public Feedback() {
+    }
 
 
     public String getPoliceStation() {
@@ -62,9 +62,13 @@ public class Feedback {
         this.userName = userName;
     }
 
-    public String getPolicemanID() { return policemanID; }
+    public String getPolicemanID() {
+        return policemanID;
+    }
 
-    public void setPolicemanID(String policemanID) { this.policemanID = policemanID; }
+    public void setPolicemanID(String policemanID) {
+        this.policemanID = policemanID;
+    }
 
     @Override
     public String toString() {
