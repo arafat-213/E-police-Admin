@@ -1,6 +1,5 @@
 package com.example.arafat_213.e_policephase2.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,14 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.arafat_213.e_policephase2.activities.ComplaintActivity;
 import com.example.arafat_213.e_policephase2.Models.DashboardModule;
 import com.example.arafat_213.e_policephase2.R;
+import com.example.arafat_213.e_policephase2.activities.ComplaintActivity;
 import com.example.arafat_213.e_policephase2.activities.FeedbackActivity;
 import com.example.arafat_213.e_policephase2.activities.NotificationActivity;
 import com.example.arafat_213.e_policephase2.activities.PolicemenListActivity;
+import com.example.arafat_213.e_policephase2.activities.RequestPatrollingActivity;
 
 import java.util.ArrayList;
 
@@ -56,37 +55,25 @@ public class DashboardModuleAdapter extends RecyclerView.Adapter<DashboardModule
                         view.getContext().startActivity(intent);
                         break;
                     case 1:
-//                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
                         intent = new Intent(view.getContext(), NotificationActivity.class);
                         view.getContext().startActivity(intent);
                         break;
                     case 2:
-                       // Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
                         intent = new Intent(view.getContext(), ComplaintActivity.class);
                         view.getContext().startActivity(intent);
                         break;
                     case 3:
-//                        intent = new Intent(view.getContext(), RequestPatrollingActivity.class);
-//                        view.getContext().startActivity(intent);
-                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
-//                        intent = new Intent(view.getContext(), PolicemenListActivity.class);
-//                        view.getContext().startActivity(intent);
+                        intent = new Intent(view.getContext(), RequestPatrollingActivity.class);
+                        view.getContext().startActivity(intent);
                         break;
                     case 4:
-                        //Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
                         intent = new Intent(view.getContext(), FeedbackActivity.class);
                         view.getContext().startActivity(intent);
                         break;
                     case 5:
-//                        intent = new Intent(mContext, FeedbackActivity.class);
-//                        mContext.startActivity(intent);
                         break;
                     case 6:
-//                        Toast.makeText(mContext, dashboardModuleArrayList.get(id).getName() + " feature not added yet", Toast.LENGTH_SHORT).show();
-//                        intent = new Intent(view.getContext(), TwitterActivity.class);
-//                        view.getContext().startActivity(intent);
                         break;
-//<a class="twitter-timeline" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 }
             }
         });

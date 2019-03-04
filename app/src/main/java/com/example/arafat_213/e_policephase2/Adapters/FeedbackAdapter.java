@@ -1,6 +1,5 @@
 package com.example.arafat_213.e_policephase2.Adapters;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,9 +14,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class FeedbackAdapter extends FirebaseRecyclerAdapter<Feedback, FeedbackAdapter.FeedbackViewHolder> {
 
-    private Context context;
 
-
+    private static final String TAG = "FeedbackAdapter";
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
@@ -27,6 +25,7 @@ public class FeedbackAdapter extends FirebaseRecyclerAdapter<Feedback, FeedbackA
     public FeedbackAdapter(@NonNull FirebaseRecyclerOptions<Feedback> options) {
         super(options);
     }
+
 
     @NonNull
     @Override
@@ -38,7 +37,7 @@ public class FeedbackAdapter extends FirebaseRecyclerAdapter<Feedback, FeedbackA
 
     @Override
     public void onBindViewHolder(@NonNull FeedbackViewHolder feedbackViewHolder, int position, @NonNull Feedback model) {
-        feedbackViewHolder.policeStationTV.setText(model.getPoliceStation());
+//        feedbackViewHolder.policeStationTV.setText(model.getPoliceStation());
         feedbackViewHolder.policeOfficerNameTV.setText(model.getPoliceOfficer());
         feedbackViewHolder.policeRatingTV.setText(" " +model.getRating()+" ★");
         feedbackViewHolder.descriptionTV.setText(model.getDescription());
@@ -50,7 +49,7 @@ public class FeedbackAdapter extends FirebaseRecyclerAdapter<Feedback, FeedbackA
 
         public FeedbackViewHolder(@NonNull View itemView) {
             super(itemView);
-            policeStationTV = itemView.findViewById(R.id.feedbackStationTV);
+//            policeStationTV = itemView.findViewById(R.id.feedbackStationTV);
             policeOfficerNameTV = itemView.findViewById(R.id.complaintNameTV);
             policeRatingTV = itemView.findViewById(R.id.feedbackRatingTV);
             descriptionTV = itemView.findViewById(R.id.complaintContentET);

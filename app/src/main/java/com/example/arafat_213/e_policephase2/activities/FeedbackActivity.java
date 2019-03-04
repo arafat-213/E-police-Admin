@@ -1,5 +1,6 @@
 package com.example.arafat_213.e_policephase2.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,15 +21,21 @@ public class FeedbackActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     FeedbackAdapter mFeedbackAdapter;
     ProgressBar mProgressBar;
+    private static final String TAG = "FeedbackActivity";
+    String mKey;
 
+    //    @Override
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+        Intent intent = getIntent();
+        mKey = intent.getStringExtra("key");
         init();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mFeedbackAdapter);
+
     }
 
     public void init() {
@@ -37,10 +44,11 @@ public class FeedbackActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.feedbackRV);
         mProgressBar = findViewById(R.id.feedbackPB);
         mProgressBar.setVisibility(View.VISIBLE);
+
         Query feedbacksQuery = FirebaseDatabase.getInstance().
                 getReference().
-                child("feedback")
-                .orderByValue();
+                child("feedbacks")
+                .child(mKey);
 
         FirebaseRecyclerOptions<Feedback> options =
                 new FirebaseRecyclerOptions.Builder<Feedback>()
