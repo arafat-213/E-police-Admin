@@ -1,16 +1,16 @@
 package com.example.arafat_213.e_policephase2.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.example.arafat_213.e_policephase2.Adapters.DashboardModuleAdapter;
 import com.example.arafat_213.e_policephase2.Models.DashboardModule;
 import com.example.arafat_213.e_policephase2.R;
-import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class DashboardActivity extends AppCompatActivity {
 
