@@ -13,11 +13,13 @@
         android:layout_marginTop="@dimen/mtrl_card_spacing"
         android:layout_marginRight="@dimen/mtrl_card_spacing"
         android:elevation="@dimen/mtrl_card_elevation"
-        android:minHeight="120dp"
+        android:minHeight="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/common_google_signin_btn_text_dark_focused"
+        app:strokeWidth="1dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
