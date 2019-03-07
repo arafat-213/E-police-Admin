@@ -2,8 +2,18 @@ package com.example.arafat_213.e_policephase2.Models;
 
 public class PatrollingRequest {
     private String fromDate, toDate, fullName, address, phoneNo, area, UId;
+    private int status;
 
-
+    public PatrollingRequest(String fromDate, String toDate, String fullName, String address, String phoneNo, String area, String UId, int status) {
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.fullName = fullName;
+        this.address = address;
+        this.phoneNo = phoneNo;
+        this.area = area;
+        this.UId = UId;
+        this.status = status;
+    }
 
     public PatrollingRequest(String fromDate, String toDate, String fullName, String address, String phoneNo, String area, String UId) {
         this.fromDate = fromDate;
@@ -69,5 +79,11 @@ public class PatrollingRequest {
 
     public void setUId(String UId) { this.UId = UId; }
 
+    public int getStatus() {
+        return status;
+    }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }

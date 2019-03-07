@@ -11,4 +11,6 @@
     <string name="label_area">Area</string>
     <string name="label_designation">Designation</string>
     <string name="label_type">Notification Type</string>
+    <string name="hint_mark_as_seen">Seen</string>
+    <string name="hint_mark_as_complete">Completed</string>
 </resources>

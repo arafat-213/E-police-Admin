@@ -30,6 +30,7 @@ public class RequestPatrollingActivity extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mRequestsAdapter);
+
     }
 
     public void init() {
@@ -41,7 +42,8 @@ public class RequestPatrollingActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
 
-        Query requestsRef = FirebaseDatabase.getInstance()
+        Query requestsRef = FirebaseDatabase
+                .getInstance()
                 .getReference()
                 .child("requests");
 
@@ -52,7 +54,7 @@ public class RequestPatrollingActivity extends AppCompatActivity {
                         .build();
 
         layoutManager = new LinearLayoutManager(this);
-        mRequestsAdapter = new RequestsAdapter(options) {
+        mRequestsAdapter = new RequestsAdapter(options, getApplicationContext()) {
             @Override
             public void onDataChanged() {
                 super.onDataChanged();
