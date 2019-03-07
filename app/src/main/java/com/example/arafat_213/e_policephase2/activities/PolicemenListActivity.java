@@ -3,6 +3,7 @@ package com.example.arafat_213.e_policephase2.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.arafat_213.e_policephase2.Adapters.PolicemanAdapter;
 import com.example.arafat_213.e_policephase2.Models.Policeman;
@@ -20,13 +21,15 @@ import androidx.recyclerview.widget.RecyclerView;
 public class PolicemenListActivity extends AppCompatActivity {
 
     private RecyclerView policeRecyclerView;
-    private Policeman policeman;
     private PolicemanAdapter mPolicemanAdapter;
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_policemen_list);
+        mProgressBar = findViewById(R.id.policemenPB);
+        mProgressBar.setVisibility(View.VISIBLE);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
@@ -58,7 +61,13 @@ public class PolicemenListActivity extends AppCompatActivity {
                         .build();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         policeRecyclerView.setLayoutManager(layoutManager);
-        mPolicemanAdapter = new PolicemanAdapter(options,getApplicationContext());
+        mPolicemanAdapter = new PolicemanAdapter(options, getApplicationContext()) {
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+        };
         policeRecyclerView.setAdapter(mPolicemanAdapter);
     }
 

@@ -8,6 +8,20 @@
     tools:context=".activities.PolicemenListActivity"
     tools:showIn="@layout/activity_policemen_list">
 
+    <ProgressBar
+        android:id="@+id/policemenPB"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/white"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:max="100"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/policeRecyclerView"
         android:layout_width="match_parent"

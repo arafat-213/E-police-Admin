@@ -3,6 +3,7 @@ package com.example.arafat_213.e_policephase2.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.arafat_213.e_policephase2.Adapters.NotificationAdapter;
 import com.example.arafat_213.e_policephase2.Models.Notification;
@@ -14,8 +15,6 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.util.ArrayList;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,8 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 public class NotificationActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private ArrayList<Notification> notificationArrayList;
     NotificationAdapter notificationAdapter;
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +34,8 @@ public class NotificationActivity extends AppCompatActivity {
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
 
         mRecyclerView = findViewById(R.id.notificationRV);
+        mProgressBar = findViewById(R.id.notificationPB);
+        mProgressBar.setVisibility(View.VISIBLE);
 //        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 //        mRecyclerView.setLayoutManager(layoutManager);
 //        notificationArrayList = new ArrayList<Notification>();
@@ -57,7 +58,13 @@ public class NotificationActivity extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Notification>()
                         .setQuery(notificationRef, Notification.class)
                         .build();
-        notificationAdapter = new NotificationAdapter(options,getApplicationContext());
+        notificationAdapter = new NotificationAdapter(options, getApplicationContext()) {
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+        };
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(notificationAdapter);

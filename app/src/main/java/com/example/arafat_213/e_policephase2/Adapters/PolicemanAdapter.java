@@ -45,7 +45,7 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
 
 
     @Override
-    protected void onBindViewHolder(@NonNull PolicemanViewHolder policemanViewHolder, final int position, @NonNull Policeman model) {
+    protected void onBindViewHolder(@NonNull final PolicemanViewHolder policemanViewHolder, final int position, @NonNull Policeman model) {
         Glide.with(context).load(model.getImage_id()).circleCrop().into(policemanViewHolder.policemanImage);
         policemanViewHolder.policemanName.setText(model.getName());
         policemanViewHolder.policemanRank.setText(model.getRank());
@@ -64,6 +64,12 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
                 Intent mIntent = new Intent(context, FeedbackActivity.class);
                 mIntent.putExtra("key", mKey);
                 mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               /*
+               A pretty cool animation
+                Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
+                        policemanViewHolder.itemView, 0, 0, policemanViewHolder.itemView.getWidth(), policemanViewHolder.itemView.getHeight()).toBundle();
+
+                ActivityCompat.startActivity(context, mIntent, options);*/
                 context.startActivity(mIntent);
             }
         });
