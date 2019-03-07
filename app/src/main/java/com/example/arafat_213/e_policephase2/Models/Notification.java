@@ -1,6 +1,8 @@
 package com.example.arafat_213.e_policephase2.Models;
 
-public class Notification {
+import java.io.Serializable;
+
+public class Notification implements Serializable {
     private String notificationType;
     private String notificationContent;
     private String notificationImage;
