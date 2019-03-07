@@ -53,7 +53,7 @@ public class AllFeedbacksAdadpter extends RecyclerView.Adapter<AllFeedbacksAdadp
 //            policeStationTV = itemView.findViewById(R.id.feedbackStationTV);
             policeOfficerNameTV = itemView.findViewById(R.id.complaintNameTV);
             policeRatingTV = itemView.findViewById(R.id.feedbackRatingTV);
-            descriptionTV = itemView.findViewById(R.id.complaintContentET);
+            descriptionTV = itemView.findViewById(R.id.feedbackContentTV);
         }
     }
 }
