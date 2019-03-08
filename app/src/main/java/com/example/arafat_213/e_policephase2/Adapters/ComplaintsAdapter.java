@@ -46,7 +46,11 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
     protected void onBindViewHolder(@NonNull ComplaintsViewHolder complaintsViewHolder, int position, @NonNull final Complaint model) {
         complaintsViewHolder.complaintName.setText(""+model.getUsername());
         complaintsViewHolder.complaintContent.setText(model.getDescription());
-        Glide.with(mContext).load(model.getMedia()).circleCrop().into(complaintsViewHolder.complaintImage);
+        Glide.with(mContext)
+                .load(model.getMedia())
+                .circleCrop()
+                .thumbnail(0.25f)
+                .into(complaintsViewHolder.complaintImage);
 
         complaintsViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

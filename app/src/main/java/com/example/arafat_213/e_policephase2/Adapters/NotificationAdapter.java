@@ -60,7 +60,11 @@ public class NotificationAdapter extends FirebaseRecyclerAdapter<Notification, N
 
         notificationViewHolder.notifyType.setText(model.getNotificationType());
         notificationViewHolder.notifyContent.setText(model.getNotificationContent());
-        Glide.with(mContext).load(model.getNotificationImage()).circleCrop().into(notificationViewHolder.notifyImage);
+        Glide.with(mContext)
+                .load(model.getNotificationImage())
+                .thumbnail(0.25f)
+                .circleCrop()
+                .into(notificationViewHolder.notifyImage);
 
         notificationViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

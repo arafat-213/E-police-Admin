@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.arafat_213.e_policephase2.Models.Policeman;
 import com.example.arafat_213.e_policephase2.R;
+import com.example.arafat_213.e_policephase2.activities.AddPolicemanActivity;
 import com.example.arafat_213.e_policephase2.activities.FeedbackActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -45,8 +46,12 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
 
 
     @Override
-    protected void onBindViewHolder(@NonNull final PolicemanViewHolder policemanViewHolder, final int position, @NonNull Policeman model) {
-        Glide.with(context).load(model.getImage_id()).circleCrop().into(policemanViewHolder.policemanImage);
+    protected void onBindViewHolder(@NonNull final PolicemanViewHolder policemanViewHolder, final int position, @NonNull final Policeman model) {
+        Glide.with(context)
+                .load(model.getImage_id())
+                .circleCrop()
+                .thumbnail(0.25f)
+                .into(policemanViewHolder.policemanImage);
         policemanViewHolder.policemanName.setText(model.getName());
         policemanViewHolder.policemanRank.setText(model.getRank());
         policemanViewHolder.policemanArea.setText(model.getArea());
@@ -71,6 +76,19 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
 
                 ActivityCompat.startActivity(context, mIntent, options);*/
                 context.startActivity(mIntent);
+            }
+        });
+
+        policemanViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                mKey = getRef(position).getKey();
+                Intent intent = new Intent(context, AddPolicemanActivity.class);
+                intent.putExtra("policeman", model);
+                intent.putExtra("key", mKey);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+                return false;
             }
         });
 //        policemanViewHolder.policemanRating.setRating(policemanArrayList.get(i).getRating());

@@ -1,6 +1,8 @@
 package com.example.arafat_213.e_policephase2.Models;
 
-public class Policeman {
+import java.io.Serializable;
+
+public class Policeman implements Serializable {
     String image_id;
     String name;
     String rating;

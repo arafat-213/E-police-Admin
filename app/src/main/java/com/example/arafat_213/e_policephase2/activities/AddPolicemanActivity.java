@@ -3,6 +3,9 @@ package com.example.arafat_213.e_policephase2.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.arafat_213.e_policephase2.Models.Policeman;
 import com.example.arafat_213.e_policephase2.R;
 import com.example.arafat_213.e_policephase2.utilities.SpinnerData;
@@ -47,6 +51,8 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
     StorageReference mStorageRef, fileRef;
     private Uri mImageUri;
     StorageTask mUploadTask;
+    boolean isEditAction;
+    String mKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +60,6 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_policeman);
         init();
-        setupSpinner();
 
     }
 
@@ -67,13 +72,26 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
         addPolicemanIV.setOnClickListener(this);
         addPolicemanBTN = findViewById(R.id.addPolicemanBTN);
         addPolicemanBTN.setOnClickListener(this);
-
+        setupSpinner();
         mPolicemenRef = FirebaseDatabase.getInstance().getReference().child("policemen");
         mStorageRef = FirebaseStorage.getInstance().getReference().child("policemen");
         fileRef = mStorageRef.child(System.currentTimeMillis()+"");
 
+        Intent intent = getIntent();
+        Policeman policeman = (Policeman) intent.getSerializableExtra("policeman");
+        if (policeman != null) {
+            isEditAction = true;
+            loadPoliceman(policeman);
+            mKey = intent.getStringExtra("key");
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
+        if (isEditAction) {
+            getSupportActionBar().setTitle("Edit Policeman");
+
+        } else
+            getSupportActionBar().setTitle("Add policeman");
     }
 
     @Override
@@ -95,9 +113,6 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
-
-
-
 
 
     private void openFileChooser()
@@ -197,4 +212,36 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
 
     }
 
+    public void loadPoliceman(Policeman policeman) {
+        policemanNameET.setText(policeman.getName());
+        policemanPhoneET.setText(policeman.getMobile_no());
+        policemanMailET.setText(policeman.getEmail());
+        rankspinner.setSelection(designationArrayList.indexOf(policeman.getRank()));
+        areaspinner.setSelection(policeStationsArrayList.indexOf(policeman.getArea()));
+        Glide.with(getApplicationContext())
+                .load(policeman.getImage_id())
+                .thumbnail(0.25f)
+                .circleCrop()
+                .into(addPolicemanIV);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_delete:
+                mPolicemenRef.child(mKey).removeValue();
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (isEditAction) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_policeman, menu);
+        }
+        return true;
+    }
 }
