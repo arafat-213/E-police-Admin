@@ -50,8 +50,8 @@ public class NotificationDetailsActivity extends AppCompatActivity {
 
     public void init() {
         notificationIV = findViewById(R.id.notificationImage);
-        notificationContentTV = findViewById(R.id.notificationContentTV);
-        notificationTypeTV = findViewById(R.id.notficationTypeTV);
+        notificationContentTV = findViewById(R.id.complaintDescTV);
+        notificationTypeTV = findViewById(R.id.complaintSenderTV);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);

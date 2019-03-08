@@ -1,6 +1,7 @@
 package com.example.arafat_213.e_policephase2.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.arafat_213.e_policephase2.Models.Complaint;
 import com.example.arafat_213.e_policephase2.R;
+import com.example.arafat_213.e_policephase2.activities.ComplaintDetailsActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -41,10 +43,20 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
     }*/
 
     @Override
-    protected void onBindViewHolder(@NonNull ComplaintsViewHolder  complaintsViewHolder, int position, @NonNull Complaint model) {
+    protected void onBindViewHolder(@NonNull ComplaintsViewHolder complaintsViewHolder, int position, @NonNull final Complaint model) {
         complaintsViewHolder.complaintName.setText(""+model.getUsername());
         complaintsViewHolder.complaintContent.setText(model.getDescription());
         Glide.with(mContext).load(model.getMedia()).circleCrop().into(complaintsViewHolder.complaintImage);
+
+        complaintsViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, ComplaintDetailsActivity.class);
+                intent.putExtra("complaint", model);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @NonNull

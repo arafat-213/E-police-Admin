@@ -1,9 +1,9 @@
 package com.example.arafat_213.e_policephase2.Models;
 
 
+import java.io.Serializable;
 
-
-public class Complaint {
+public class Complaint implements Serializable {
     private String media;
     private String area, address, description;
     private String username;
