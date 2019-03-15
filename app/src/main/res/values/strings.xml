@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">E-Police phase 2</string>
     <string name="title_activity_policemen_list">PolicemenListActivity</string>
+    <string name="title_activity_feedbacks">Feedbacks</string>
+    <string name="title_activity_notification_details">Notification</string>
+    <string name="title_activity_complaints">Complaints</string>
+    <string name="title_activity_notifications">Notification</string>
+    <string name="title_activity_add_notifications">Send Notification</string>
+    <string name="title_activity_add_policeman">Add Policeman</string>
+    <string name="title_activity_edit_policeman">Edit Policeman</string>
+    <string name="title_activity_request_patrolling">Patrolling Requests</string>
     <string name="hint_enter_name">Enter name</string>
     <string name="hint_enter_contact">Enter Contact Number</string>
     <string name="hint_enter_mail">Enter Email ID</string>
@@ -13,7 +21,6 @@
     <string name="label_type">Notification Type</string>
     <string name="hint_mark_as_seen">Seen</string>
     <string name="hint_mark_as_complete">Completed</string>
-    <string name="title_activity_notification_details">Notification</string>
     <string name="extra_large_text">
         "Material is the metaphor.\n\n"
 
@@ -117,4 +124,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_complaint_details">Complaint</string>
+    <string name="label_confirm">CONFIRM</string>
 </resources>

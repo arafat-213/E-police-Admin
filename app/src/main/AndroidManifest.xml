@@ -17,8 +17,27 @@
             android:name=".activities.NotificationDetailsActivity"
             android:label="@string/title_activity_notification_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activities.FeedbackActivity" />
+        <activity
+            android:name=".activities.FeedbackActivity"
+            android:label="@string/title_activity_feedbacks" />
         <activity android:name=".activities.DashboardActivity">
+        </activity>
+        <activity
+            android:name=".activities.PolicemenListActivity"
+            android:label="@string/title_activity_policemen_list" />
+        <activity
+            android:name=".activities.AddPolicemanActivity"
+            android:label="@string/title_activity_add_policeman" />
+        <activity
+            android:name=".activities.RequestPatrollingActivity"
+            android:label="@string/title_activity_request_patrolling" />
+        <activity
+            android:name=".activities.NewNotificationActivity"
+            android:label="@string/title_activity_add_notifications" />
+        <activity
+            android:name=".activities.NotificationActivity"
+            android:label="@string/title_activity_notifications" />
+        <activity android:name=".activities.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,14 +45,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.PolicemenListActivity"
-            android:label="@string/title_activity_policemen_list" />
-        <activity android:name=".activities.AddPolicemanActivity" />
-        <activity android:name=".activities.RequestPatrollingActivity" />
-        <activity android:name=".activities.NewNotificationActivity" />
-        <activity android:name=".activities.NotificationActivity" />
-        <activity android:name=".activities.SignInActivity" />
-        <activity android:name=".activities.ComplaintActivity" />
+            android:name=".activities.ComplaintActivity"
+            android:label="@string/title_activity_complaints" />
         <activity
             android:name=".activities.ComplaintDetailsActivity"
             android:label="@string/title_activity_complaint_details"

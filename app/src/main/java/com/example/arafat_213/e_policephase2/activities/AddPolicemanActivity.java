@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.arafat_213.e_policephase2.Models.Policeman;
 import com.example.arafat_213.e_policephase2.R;
 import com.example.arafat_213.e_policephase2.utilities.SpinnerData;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +31,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -53,6 +55,8 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
     StorageTask mUploadTask;
     boolean isEditAction;
     String mKey;
+    String mRating = "0.0";
+    String oldImage = "N.A.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +79,6 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
         setupSpinner();
         mPolicemenRef = FirebaseDatabase.getInstance().getReference().child("policemen");
         mStorageRef = FirebaseStorage.getInstance().getReference().child("policemen");
-        fileRef = mStorageRef.child(System.currentTimeMillis()+"");
 
         Intent intent = getIntent();
         Policeman policeman = (Policeman) intent.getSerializableExtra("policeman");
@@ -83,15 +86,15 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
             isEditAction = true;
             loadPoliceman(policeman);
             mKey = intent.getStringExtra("key");
+            fileRef = mStorageRef.child(mKey);
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_arrow_back_black_24dp);
         if (isEditAction) {
-            getSupportActionBar().setTitle("Edit Policeman");
-
+            getSupportActionBar().setTitle(getString(R.string.title_activity_edit_policeman));
         } else
-            getSupportActionBar().setTitle("Add policeman");
+            getSupportActionBar().setTitle(getString(R.string.title_activity_add_policeman));
     }
 
     @Override
@@ -105,11 +108,19 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
         switch (view.getId()) {
             case R.id.addPolicemanIV:
                 openFileChooser();
-
                 break;
             case R.id.addPolicemanBTN:
                 mProgressBar.setVisibility(View.VISIBLE);
-                uploadImage();
+                Policeman policeman = new Policeman(
+                        oldImage,
+                        policemanNameET.getText().toString(),
+                        mRating,
+                        policemanPhoneET.getText().toString(),
+                        policemanMailET.getText().toString(),
+                        rankspinner.getSelectedItem().toString(),
+                        areaspinner.getSelectedItem().toString()
+                );
+                uploadImage(policeman);
                 break;
         }
     }
@@ -133,7 +144,7 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    public void uploadImage(){
+    public void uploadImage(final Policeman policeman) {
         if(mImageUri!= null){
             final StorageReference fileRef = mStorageRef.child(System.currentTimeMillis()
                     +"");//+getFileExtension(mImageUri));
@@ -142,62 +153,24 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // var = fileRef.getDownloadUrl().getResult().toString();
-                            Task<Uri> result= taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                            final Task<Uri> result = taskSnapshot.getMetadata().getReference().getDownloadUrl();
                             result.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    Policeman policemanobj =new Policeman(uri.toString(),
-                        policemanNameET.getText().toString(),
-                        policemanPhoneET.getText().toString(),
-                        policemanMailET.getText().toString(),
-                        rankspinner.getSelectedItem().toString(), areaspinner.getSelectedItem().toString()
-                );
-                                    String key = mPolicemenRef.push().getKey();
-                                    mPolicemenRef.child(key).setValue(policemanobj)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    mProgressBar.setVisibility(View.INVISIBLE);
-                                                    Toast.makeText(AddPolicemanActivity.this,"Policeman added Successfully",
-                                                            Toast.LENGTH_LONG).show();
-                                                    policemanNameET.setText("");
-                                                    policemanPhoneET.setText("");
-                                                    policemanMailET.setText("");
-                                                    addPolicemanIV.setImageResource(R.drawable.ic_person_black_24dp);
-                                                }
-                                            });
+                                    policeman.setImage_id(uri.toString());
+                                    addPoliceman(policeman);
                                 }
                             });
-
-
-
                         }
                     });
         }
         else{
-            String key = mPolicemenRef.push().getKey();
-            mPolicemenRef.child(key).setValue(
-                    new Policeman("NO IMAGE SELECTED",
-                            policemanNameET.getText().toString(),
-                            policemanPhoneET.getText().toString(),
-                            policemanMailET.getText().toString(),
-                            rankspinner.getSelectedItem().toString(),areaspinner.getSelectedItem().toString()
-                    )
-            ).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    policemanNameET.setText("");
-                    policemanPhoneET.setText("");
-                    policemanMailET.setText("");
-                    addPolicemanIV.setImageResource(R.drawable.ic_person_black_24dp);
-                }
-            });
+            addPoliceman(policeman);
         }
 
     }
 
     public void setupSpinner(){
-
         rankspinner=findViewById(R.id.designationSpinner);
         areaspinner=findViewById(R.id.stationSpinner);
         SpinnerData spinnerData = new SpinnerData();
@@ -209,7 +182,6 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
                 R.layout.support_simple_spinner_dropdown_item,designationArrayList);
         rankspinner.setAdapter(designationAdapter);
         areaspinner.setAdapter(policeStationsAdapter);
-
     }
 
     public void loadPoliceman(Policeman policeman) {
@@ -218,11 +190,13 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
         policemanMailET.setText(policeman.getEmail());
         rankspinner.setSelection(designationArrayList.indexOf(policeman.getRank()));
         areaspinner.setSelection(policeStationsArrayList.indexOf(policeman.getArea()));
+        oldImage = policeman.getImage_id();
         Glide.with(getApplicationContext())
-                .load(policeman.getImage_id())
+                .load(oldImage)
                 .thumbnail(0.25f)
                 .circleCrop()
                 .into(addPolicemanIV);
+        mRating = policeman.getRating();
     }
 
     @Override
@@ -243,5 +217,39 @@ public class AddPolicemanActivity extends AppCompatActivity implements View.OnCl
             inflater.inflate(R.menu.menu_policeman, menu);
         }
         return true;
+    }
+
+    public void addPoliceman(Policeman policeman) {
+        if (!isEditAction)
+            mKey = mPolicemenRef.push().getKey();
+        mPolicemenRef.child(mKey).setValue(policeman)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            finish();
+                            if (isEditAction)
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "Policeman updated successfully",
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            else {
+                                // added policeman successfully
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "Policeman added successfully",
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            }
+                        } else {
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    "Failed to add/update policeman",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                    }
+                });
     }
 }

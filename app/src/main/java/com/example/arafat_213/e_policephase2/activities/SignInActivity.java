@@ -63,6 +63,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                     "Invalid username/password",
                                     Toast.LENGTH_SHORT
                             ).show();
+                            signInBTN.setVisibility(View.INVISIBLE);
                         }
                     }
                 }, SPLASH_TIME_OUT);

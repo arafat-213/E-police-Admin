@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.arafat_213.e_policephase2.Models.Notification;
 import com.example.arafat_213.e_policephase2.R;
 import com.example.arafat_213.e_policephase2.utilities.SpinnerData;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +27,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,6 +48,7 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
     StorageTask mUploadTask;
     //UploadTask myUploadTask;
     StorageReference fileRef;
+    String imageUri = "N.A.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +88,11 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
                 openFileChooser();
                 break;
             case R.id.notifyBTN:
-                uploadImage();
+                Notification notification =
+                        new Notification(typeSpinner.getSelectedItem().toString(),
+                                notifyContentET.getText().toString(),
+                                imageUri);
+                uploadImage(notification);
                 mProgressBar.setVisibility(View.VISIBLE);
                 break;
 
@@ -109,8 +116,8 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
             notificationIV.setImageURI(mImageUri);
         }
     }
-    
-    public void uploadImage(){
+
+    public void uploadImage(final Notification notification) {
         if(mImageUri!= null){
             final StorageReference fileRef = mStorageRef.child(System.currentTimeMillis()
                     +"");//+getFileExtension(mImageUri));
@@ -123,38 +130,15 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
                             result.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    Notification notificationobj = new Notification(typeSpinner.getSelectedItem().toString(),notifyContentET.getText().toString(),
-                                            uri.toString());
-                                    String key = mNotificationRef.push().getKey();
-                                    mNotificationRef.child(key).setValue(notificationobj)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    mProgressBar.setVisibility(View.INVISIBLE);
-                                                    Toast.makeText(NewNotificationActivity.this,"Complaint Uploaded Successfully",
-                                                            Toast.LENGTH_LONG).show();
-                                                    notifyContentET.setText("");
-                                                    notificationIV.setImageResource(R.drawable.ic_person_black_24dp);
-                                                }
-                                            });
+                                    notification.setNotificationImage(uri.toString());
+                                    addNotification(notification);
                                 }
                             });
-
-
-
                         }
                     });
         }
         else{
-            String key = mNotificationRef.push().getKey();
-            mNotificationRef.child(key).setValue(
-                    new Notification(typeSpinner.getSelectedItem().toString(), notifyContentET.getText().toString(),"NO IMAGE SELECTED")
-            ).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    notifyContentET.setText("");
-                }
-            });
+            addNotification(notification);
         }
 
     }
@@ -168,7 +152,28 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
         typeSpinner.setAdapter(typeAdapter);
     }
 
-
+    public void addNotification(Notification notification) {
+        String key = mNotificationRef.push().getKey();
+        mNotificationRef.child(key).setValue(notification)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    "Notification sent successfully",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        } else {
+                            Toast.makeText(
+                                    getApplicationContext(),
+                                    "Failed to send Notification",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        }
+                    }
+                });
+    }
 
 
 }

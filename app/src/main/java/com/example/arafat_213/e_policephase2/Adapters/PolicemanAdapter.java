@@ -2,6 +2,7 @@ package com.example.arafat_213.e_policephase2.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, PolicemanAdapter.PolicemanViewHolder> {
 
-    private Context context;
+    private Context mContext;
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
@@ -30,9 +31,10 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
      */
 
     String mKey;
-    public PolicemanAdapter(@NonNull FirebaseRecyclerOptions<Policeman> options, Context context) {
+
+    public PolicemanAdapter(@NonNull FirebaseRecyclerOptions<Policeman> options, Context mContext) {
         super(options);
-        this.context = context;
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -47,7 +49,7 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
 
     @Override
     protected void onBindViewHolder(@NonNull final PolicemanViewHolder policemanViewHolder, final int position, @NonNull final Policeman model) {
-        Glide.with(context)
+        Glide.with(mContext)
                 .load(model.getImage_id())
                 .circleCrop()
                 .thumbnail(0.25f)
@@ -66,7 +68,7 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
                 mKey = getRef(position).getKey();
 
 //                mOnInputListener.sendKey(mKey);
-                Intent mIntent = new Intent(context, FeedbackActivity.class);
+                Intent mIntent = new Intent(mContext, FeedbackActivity.class);
                 mIntent.putExtra("key", mKey);
                 mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                /*
@@ -74,8 +76,8 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
                 Bundle options = ActivityOptionsCompat.makeScaleUpAnimation(
                         policemanViewHolder.itemView, 0, 0, policemanViewHolder.itemView.getWidth(), policemanViewHolder.itemView.getHeight()).toBundle();
 
-                ActivityCompat.startActivity(context, mIntent, options);*/
-                context.startActivity(mIntent);
+                ActivityCompat.startActivity(mContext, mIntent, options);*/
+                mContext.startActivity(mIntent);
             }
         });
 
@@ -83,15 +85,29 @@ public class PolicemanAdapter extends FirebaseRecyclerAdapter<Policeman, Policem
             @Override
             public boolean onLongClick(View view) {
                 mKey = getRef(position).getKey();
-                Intent intent = new Intent(context, AddPolicemanActivity.class);
+                Intent intent = new Intent(mContext, AddPolicemanActivity.class);
                 intent.putExtra("policeman", model);
                 intent.putExtra("key", mKey);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                mContext.startActivity(intent);
                 return false;
             }
         });
-//        policemanViewHolder.policemanRating.setRating(policemanArrayList.get(i).getRating());
+
+        policemanViewHolder.policemanPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialPhoneNumber(model.getMobile_no());
+            }
+        });
+    }
+
+    public void dialPhoneNumber(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:+91" + phoneNumber));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(intent);
+
     }
 
 
