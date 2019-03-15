@@ -74,6 +74,7 @@ public class FeedbackActivity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.feedbackPB);
         mProgressBar.setVisibility(View.VISIBLE);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
         mRecyclerView.setLayoutManager(layoutManager);
     }
 

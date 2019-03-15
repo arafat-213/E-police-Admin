@@ -1,5 +1,6 @@
 package com.example.arafat_213.e_policephase2.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -68,13 +69,15 @@ public class ComplaintActivity extends AppCompatActivity {
         };
         layoutManager = new LinearLayoutManager(this);
 
-
+        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(complaintsAdapter);
     }
     @Override
     public boolean onSupportNavigateUp() {
-        finish();
+        Intent intent = new Intent(ComplaintActivity.this, DashboardActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         return super.onSupportNavigateUp();
     }
 

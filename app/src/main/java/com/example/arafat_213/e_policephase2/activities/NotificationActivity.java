@@ -66,6 +66,7 @@ public class NotificationActivity extends AppCompatActivity {
             }
         };
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(notificationAdapter);
 

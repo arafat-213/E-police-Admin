@@ -60,6 +60,7 @@ public class PolicemenListActivity extends AppCompatActivity {
                         .setQuery(policeListQuery,Policeman.class)
                         .build();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
         policeRecyclerView.setLayoutManager(layoutManager);
         mPolicemanAdapter = new PolicemanAdapter(options, getApplicationContext()) {
             @Override

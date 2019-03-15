@@ -1,24 +1,25 @@
 package com.example.arafat_213.e_policephase2.Models;
 
-
 import java.io.Serializable;
 
 public class Complaint implements Serializable {
     private String media;
     private String area, address, description;
     private String username;
+    private String uId;
     private int status;
 
 
     public Complaint() {
     }
 
-    public Complaint(String media, String area, String address, String description, String username, int status) {
+    public Complaint(String media, String area, String address, String description, String username, String uId, int status) {
         this.media = media;
         this.area = area;
         this.address = address;
         this.description = description;
         this.username = username;
+        this.uId = uId;
         this.status = status;
     }
 
@@ -59,6 +60,14 @@ public class Complaint implements Serializable {
 
     public void setUsername(String username) { this.username = username; }
 
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
+    }
+
     public int getStatus() {
         return status;
     }
@@ -75,6 +84,7 @@ public class Complaint implements Serializable {
                 ", address='" + address + '\'' +
                 ", description='" + description + '\'' +
                 ", username='" + username + '\'' +
+                ", uId='" + uId + '\'' +
                 ", status=" + status +
                 '}';
     }

@@ -54,6 +54,7 @@ public class RequestPatrollingActivity extends AppCompatActivity {
                         .build();
 
         layoutManager = new LinearLayoutManager(this);
+        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
         mRequestsAdapter = new RequestsAdapter(options, getApplicationContext()) {
             @Override
             public void onDataChanged() {
