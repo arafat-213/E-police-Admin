@@ -88,12 +88,12 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
                 openFileChooser();
                 break;
             case R.id.notifyBTN:
+                mProgressBar.setVisibility(View.VISIBLE);
                 Notification notification =
                         new Notification(typeSpinner.getSelectedItem().toString(),
                                 notifyContentET.getText().toString(),
                                 imageUri);
                 uploadImage(notification);
-                mProgressBar.setVisibility(View.VISIBLE);
                 break;
 
         }
@@ -158,6 +158,7 @@ public class NewNotificationActivity extends AppCompatActivity implements View.O
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
                         if (task.isSuccessful()) {
                             Toast.makeText(
                                     getApplicationContext(),
