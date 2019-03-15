@@ -58,7 +58,8 @@ public class ComplaintDetailsActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(ComplaintDetailsActivity.this, ComplaintActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -123,6 +123,11 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="medium_text">"Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"</string>
     <string name="title_activity_complaint_details">Complaint</string>
     <string name="label_confirm">CONFIRM</string>
+    <string name="title_text">What is Lorem Ipsum?</string>
 </resources>
