@@ -1,14 +1,20 @@
 package com.example.arafat_213.e_policephase2.activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.arafat_213.e_policephase2.Adapters.DashboardModuleAdapter;
 import com.example.arafat_213.e_policephase2.Models.DashboardModule;
+import com.example.arafat_213.e_policephase2.Models.Notification;
 import com.example.arafat_213.e_policephase2.R;
 
 import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +27,17 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+            NotificationChannel channel =
+                    new NotificationChannel("Phase2Notifications","Phase2Notifications", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+
+
 
         arrayList = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerView);
@@ -41,6 +58,7 @@ public class DashboardActivity extends AppCompatActivity {
         recyclerView.setAdapter(dashboardModuleAdapter);
 
         temp();
+
     }
 
     public void temp() {
