@@ -55,7 +55,8 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
     }*/
 
     @Override
-    protected void onBindViewHolder(@NonNull final ComplaintsViewHolder complaintsViewHolder, final int position, @NonNull final Complaint model) {
+    protected void onBindViewHolder(@NonNull final ComplaintsViewHolder complaintsViewHolder, final int position, @NonNull Complaint complaint) {
+        final Complaint model = complaint;
         complaintsViewHolder.complaintName.setText(model.getUsername());
         complaintsViewHolder.complaintContent.setText(model.getDescription());
         Glide.with(mContext)
@@ -68,13 +69,8 @@ public class ComplaintsAdapter extends FirebaseRecyclerAdapter<Complaint, Compla
         // hide the seen button and set bgColor == lightgray
         // if status == COMPLETED hide the card
         switch (model.getStatus()) {
-            case PENDING:
-                complaintsViewHolder.seenBTN.setEnabled(true);
-                complaintsViewHolder.cardView.setCardBackgroundColor(white);
-                complaintsViewHolder.cardView.setVisibility(View.VISIBLE);
-                break;
             case SEEN:
-                complaintsViewHolder.seenBTN.setEnabled(false);
+//                complaintsViewHolder.seenBTN.setEnabled(false);
                 complaintsViewHolder.seenBTN.setVisibility(View.GONE);
                 complaintsViewHolder.cardView.setBackgroundColor(lightgray);
                 break;

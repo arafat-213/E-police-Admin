@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">E-Police phase 2</string>
+    <string name="app_name">Police</string>
     <string name="title_activity_policemen_list">PolicemenListActivity</string>
     <string name="title_activity_feedbacks">Feedbacks</string>
     <string name="title_activity_notification_details">Notification</string>

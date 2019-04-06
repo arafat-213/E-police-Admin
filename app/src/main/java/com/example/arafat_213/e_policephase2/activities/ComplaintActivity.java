@@ -68,8 +68,7 @@ public class ComplaintActivity extends AppCompatActivity {
             }
         };
         layoutManager = new LinearLayoutManager(this);
-
-        ((LinearLayoutManager) layoutManager).setReverseLayout(true);
+        //   ((LinearLayoutManager) layoutManager).setReverseLayout(true);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(complaintsAdapter);
     }
